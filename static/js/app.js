@@ -1,4 +1,7 @@
-const username = "admin";
+let username = localStorage.getItem("username");
+if(!username){
+  window.location.href = "/login";
+}
 
 function renderPost(post, isNew = false) {
     const template = document
@@ -6,7 +9,6 @@ function renderPost(post, isNew = false) {
       .content.cloneNode(true);
     template.querySelector(".username").innerText = post.username;
     template.querySelector(".message").innerText = post.message;
-  
     if (isNew) {
       document.getElementById("feed").prepend(template);
     } else {
